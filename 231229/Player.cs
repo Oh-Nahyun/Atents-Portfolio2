@@ -34,11 +34,17 @@ public class Player : MonoBehaviour
         inputActions.Player.Fire.performed += OnFire; // Player 액션맵의 Fire 액션에 OnFire 함수를 연결 (눌렀을 때만 연결된 함수 실행)
         inputActions.Player.Fire.canceled += OnFire; // Player 액션맵의 Fire 액션에 OnFire 함수를 연결 (땠을 때만 연결된 함수 실행)
         //inputActions.Player.Fire.started // 콘솔 게임에서 조이스틱 관련 부분
+
+        inputActions.Player.Fire.performed += OnBoost;
+        inputActions.Player.Fire.canceled += OnBoost;
     }
 
     // 이 스크립트가 포함된 게임 오브젝트가 비활성화되면 호출된다.
     private void OnDisable()
     {
+        inputActions.Player.Fire.canceled -= OnBoost;
+        inputActions.Player.Fire.performed -= OnBoost;
+
         inputActions.Player.Fire.canceled -= OnFire; // Player 액션맵의 Fire 액션에 OnFire 함수를 연결 (땠을 때만 연결된 함수 실행)
         inputActions.Player.Fire.performed -= OnFire; // Player 액션맵의 Fire 액션에서 OnFire 함수를 연결 해제
         inputActions.Player.Disable(); // Player 액션맵을 비활성화
@@ -58,6 +64,22 @@ public class Player : MonoBehaviour
         if(context.canceled) // 지금 입력이 떨어졌다.
         {
             Debug.Log("OnFire : 떨어짐");
+        }
+    }
+
+    /// 실습_231229
+    /// Boost 액션과 OnBoost 함수 연결하기 (Shift-Key)
+    /// Boost 액션으로 눌러졌는지 떨어졌는지 출력하기
+    public void OnBoost(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            Debug.Log("OnBoost : 눌러짐");
+        }
+
+        if (context.canceled)
+        {
+            Debug.Log("OnBoost : 떨어짐");
         }
     }
 
