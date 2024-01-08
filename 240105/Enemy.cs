@@ -51,31 +51,6 @@ public class Enemy : MonoBehaviour
     /// </summary>
     float elapsedTime = 0.0f;
 
-    /// <summary>
-    /// 적의 HP
-    /// </summary>
-    public int hp = 3;
-    // int hpMax = 3;
-
-    private int HP
-    {
-        get => hp;
-        set
-        {
-            hp = value;
-            if(hp <= 0) // HP가 0 이하가 되면 죽는다.
-            {
-                hp = 0;
-                OnDie();
-            }
-        }
-    }
-
-    /// <summary>
-    /// 터질 때 나올 이팩트
-    /// </summary>
-    public GameObject explosionPrefab;
-
     private void Start()
     {
         // 초기화
@@ -98,25 +73,8 @@ public class Enemy : MonoBehaviour
     // 2. 적이 폭발할 때 explosionEffect 생성
     // 3. 플레이어 총알 발사할 때 flash 잠깐 보이기
     // 4. 연사처리
-    // 내가 쓴 코드_미완성본(3)
-    /*
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Instantiate(effectPrefab, transform.position, Quaternion.identity);
-    }
-    */
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.CompareTag("Bullet")) // 총알이 부딪치면 HP가 1 감소한.
-        {
-            HP--;
-        }
-    }
-
-    private void OnDie()
-    {
-        Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-        Destroy(gameObject); // 자기 자신 삭제
     }
 }
