@@ -41,8 +41,6 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // 내가 쓴 코드_미완성본(3)
-        /*
         // 충돌이 시작했을 때 실행
         Debug.Log($"OnCollisionEnter2D : {collision.gameObject.name}");
 
@@ -60,11 +58,6 @@ public class Bullet : MonoBehaviour
             }
         }
 
-        Instantiate(effectPrefab, transform.position, Quaternion.identity); // hit 이팩트 생성
-        Destroy(gameObject); // 자기 자신은 무조건 삭제
-        */
-
-        // 이제 부딪친 쪽에서 처리
         Instantiate(effectPrefab, transform.position, Quaternion.identity); // hit 이팩트 생성
         Destroy(gameObject); // 자기 자신은 무조건 삭제
     }
