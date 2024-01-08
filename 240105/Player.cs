@@ -43,8 +43,6 @@ public class Player : MonoBehaviour
     /// </summary>
     public GameObject bullletPrefab;
 
-    Transform fireTransform;
-
     /// <summary>
     /// 시작 함수 1 (실행 순서 1번)
     /// </summary>
